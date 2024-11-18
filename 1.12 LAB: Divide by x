@@ -1,0 +1,10 @@
+''' Type your code here. '''
+# Defining user_num_in as an integer and input value
+user_num_in = int(input())
+# Defining x as an integer and input value
+x = int(input())
+# Defining user_num_out as user_num_in divided by x
+# Using '//' (floored division operator) to negate decimal points
+user_num_out = user_num_in // x
+# Printing out the output of User_num_out divided by x three times
+print(user_num_out , (user_num_out // x) , ((user_num_out // x) // x))
