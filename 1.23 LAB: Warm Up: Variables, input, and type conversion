@@ -1,0 +1,20 @@
+user_int = int(input('Enter integer (32 - 126):\n'))
+
+# FIXME (1): Finish reading other items into variables, then output the four values on a single line separated by a space
+# Where _in = input and _out = output
+# Defining user_float_in and text prompt to read 'Enter float:'
+user_float_in = input('Enter float:\n')
+# Defining user_char_in and text prompt to read 'Enter character:'
+user_char_in = input('Enter character:\n')
+# Defining user_str_in and text prompt to read 'Enter string:'
+user_str_in = input('Enter string:\n')
+# Creating output to read inputs in order they were prompted
+print(user_int , user_float_in, user_char_in , user_str_in)
+# FIXME (2): Output the four values in reverse
+# Creating output to read inputs in reverse order
+print(user_str_in , user_char_in , user_float_in , user_int)
+# FIXME (3): Convert the integer to a character, and output that character
+# Converting the integer into a character
+int_to_chr = chr(user_int)
+# Creating output to read the integer converted to a character
+print(user_int , 'converted to a character is' , int_to_chr)
