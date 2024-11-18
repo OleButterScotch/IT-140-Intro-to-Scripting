@@ -1,0 +1,17 @@
+# Imported the date and time
+from datetime import datetime
+
+# Prompt the question for user to input name as a string
+user_name = str(input('What is your name?\n')) 
+
+# Prompt the question for user age as an integer
+user_age = int(input('How old are you?\n')) 
+
+# Defining variable as the current year from the datetime
+current_year = datetime.now().year 
+
+# Subtracting current year from age to ensure answer turns out positive
+year_born = current_year - user_age 
+
+# Printing output with user name and year born
+print(f'Hello {user_name}! You were born in {year_born}.') 
