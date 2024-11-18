@@ -1,0 +1,143 @@
+''' 12/11/2022
+    SNHU: IT-140: Intro to Scripting '''
+
+#  Display starting menu
+def prompt_menu():
+    print("Welcome to \"Don't Get Caught\"")
+    print("\tA Text Based Game\n")
+    print("Your parents are on their way home from a weekend getaway,")
+    print("And you have to clean up from your party the night before.")
+    print("You must collect all seven items before taking out the trash.")
+    print("\t\t\t\tAND DON'T GET CAUGHT!\n")
+    print("Moves: 'go {direction}' (travel north, south, east, or west)")
+    print("Pick Up Item: 'get {item}' (add nearby item to inventory)\n")
+
+#  Dictionary of Rooms with Dictionaries of rooms and items
+rooms = {
+    'Garage': {'East': 'Kitchen', 'North': 'Patio'},  # Starting Room
+    'Patio': {'South': 'Garage', 'East': 'Back Porch', 'Item': 'Bottles'},
+    'Back Porch': {'West': 'Patio', 'South': 'Hallway', 'Item': 'Solo Cups'},
+    'Kitchen': {'West': 'Garage', 'South': 'Dining Room', 'East': 'Hallway', 'Item': 'Trash Bag'},
+    'Dining Room': {'North': 'Kitchen', 'Item': 'Pizza Boxes'},
+    'Hallway': {
+        'North': 'Back Porch', 'West': 'Kitchen', 'East': 'Living Room',
+        'South': 'Front Porch', 'Item': 'Napkins'
+        },
+    'Living Room': {'West': 'Hallway', 'South': 'Study', 'Item': 'Soda Cans'},
+    'Study': {'North': 'Living Room', 'Item': 'Paper Plates'},
+    'Front Porch': {'North': 'Hallway', 'Final': 'Trash Can'}  # Final Room
+    }
+
+#  For proper outputting when receiving items
+vowels_list = ['a', 'e', 'i', 'o', 'u']
+
+#  Open list to append items into as the game is played
+inventory_list = []
+
+#  Defining my starting point for the game
+current_room = 'Garage'
+
+#  Empty variable used for later messages to the player
+message = ""
+
+#  Run the prompt menu for the player
+prompt_menu()
+
+#  Game Play loop
+while True:
+    print('*' * 25)
+    #  Displays current status of the player
+    print(f"You are in the {current_room}\nInventory: {inventory_list}\n{'*' * 25}")
+
+    #  Displays possible moves for the player and if there is an item available
+    possible_moves = rooms[current_room].keys()
+    print('Possible moves: ', *possible_moves)
+
+    #  Prints messages to the player depending on what actions they take
+    print(message)
+
+    #  Loop for items and proper grammar output
+    if "Item" in rooms[current_room].keys():
+        nearby_item = rooms[current_room]["Item"]
+
+        if nearby_item not in inventory_list:
+
+            if nearby_item[-1] == 's':
+                print(f"You see {nearby_item}")
+
+            elif nearby_item[0] in vowels_list:
+                print(f"You see an {nearby_item}")
+
+            else:
+                print(f"You see a {nearby_item}")
+
+    #  Loop for Final Room (Win or Lose)
+    if "Final" in rooms[current_room].keys():
+
+        if len(inventory_list) < 7:
+            print(f"You just got caught by your parents!")
+            print(f"You Lose!")
+            break
+
+        else:
+            print(f"You cleaned the house before your parents got home!")
+            print(f"YOU WIN!")
+            break
+
+    #  Prompt for player to put in command or action
+    user_input = input("Where do you want to go?\n")
+
+    #  Splits input for code to read what player wants to do
+    next_move = user_input.split(' ')
+
+    #  Defining the players action by using first typed word
+    #  Titling it to match the code so player doesn't have to worry about cap or lower case
+    action = next_move[0].title()
+
+    #  Defining variables item and direction
+    item = "Item"
+    direction = "null"
+
+    ''' Get the second word and apply it to my direction variable. Movement should be two words max.
+        Item can be more than two words. Use that to help differentiate between direction and item.
+        Also use first words get and go to help define direction and item.'''
+    if len(next_move) > 1:
+        item = next_move[1:]
+        direction = next_move[1].title()
+
+        item = " ".join(item).title()
+
+    #  Loop for my direction commands
+    if action == "Go":
+
+        #  Using try and except to print messages to player based on input commands.
+        try:
+            current_room = rooms[current_room][direction]
+            message = f"You travel {direction}"
+
+        except:
+            message = f"You can't go that way."
+
+    #  Loop for my item functions based on user commands.
+    elif action == "Get":
+        try:
+            if item == rooms[current_room]["Item"]:
+
+                if item not in inventory_list:
+                    inventory_list.append(rooms[current_room]["Item"])
+                    message = f"{item} picked up!"
+                else:
+                    message = f"You already have that {item}"
+
+            else:
+                message = f"Can't find {item}."
+        except:
+            message = f"Can't find {item}."
+
+    #  Elif statement for user to exit game.
+    elif action == "Exit":
+        break
+
+    #  Else statement for all possible unwanted commands.
+    else:
+        message = "Invalid command."
