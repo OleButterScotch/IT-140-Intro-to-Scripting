@@ -1,0 +1,15 @@
+user_num = int(input('Enter integer:\n'))
+
+# Type your code here
+# Creating output that will read 'You entered:' and user_num
+print('You entered:' , user_num)
+# Output will read user_num squared is user_num to the second power. More concise to use the ** function.
+print(user_num , 'squared is' , user_num ** 2) 
+# Output will read 'And user input cubed is user input to the third power !!'
+print('And' , user_num , 'cubed is' , user_num ** 3 , '!!')
+# Defining new variable as an integer with an output that will read 'Enter another integer:'
+user_num2 = int(input('Enter another integer:\n'))
+# Output will read 'first input + second input is sum of both inputs'
+print(user_num , '+' , user_num2 , 'is' , user_num + user_num2)
+# Output will read 'first input * second input is product of both inputs'
+print(user_num , '*' , user_num2 , 'is' , user_num * user_num2)
