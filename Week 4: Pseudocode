@@ -1,0 +1,16 @@
+Assignment 4-3: Higher/Lower Game Pseudocode
+
+PRINT a welcoming message to the game
+PROMPT for high limit
+PROMPT for low limit
+IF high limit lower than low lime or vice versa
+	PROMPT to fix error
+PRINT confirming high and low limit
+PROMPT for guess
+FOR numbers in the range of high and low limit
+	Complete problem
+	WHILE program conditions the guesses
+	PRINT your guess is too high
+	PRINT your guess is too low
+ENDFOR correct guess 
+	PRINT that is correct
