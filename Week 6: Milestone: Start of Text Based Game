@@ -1,0 +1,52 @@
+12/04/2022 - SNHU: IT-140: Intro to Scripting
+
+# A dictionary for the simplified dragon text game
+# The dictionary links a room to other rooms.
+rooms = {
+    'Great Hall': {'South': 'Bedroom'},
+    'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+    'Cellar': {'West': 'Bedroom'}
+}
+
+direction = ['North', 'South', 'East', 'West']  # Defining directions used for navigation
+
+Creating a function for my instructions
+Setting instruction for user to exit game when desired
+
+def instructions(room):
+    print('You are currently in the {}'.format(room))
+    print('You can move between rooms using the following directions:')
+    for direct in direction:
+        print('{}'.format(direct), end=' ')
+    print('\nTo stop the game, type: exit.')
+
+Creating function for in room outputs
+
+def in_room(room, direct):
+    where_to = rooms[room]
+    if direct not in where_to:
+        print('You cannot go that way in the {}.'.format(room))
+        return room
+
+    print('Changing rooms to the {}'.format(where_to[direct]))
+    return where_to[direct]
+
+stop = 'go'
+current_room = 'Great Hall'
+
+Creating my while loop for room movement
+As long as user doesn't type exit, loop will continue
+
+while stop != 'exit':
+    user_input = input(instructions(current_room))
+    if user_input == 'exit':
+       break
+    if user_input not in direction:
+        print('{} is not a valid input.'.format(user_input))
+        continue
+    if current_room == 'Great Hall':
+        current_room = in_room('Great Hall', user_input)
+    elif current_room == 'Bedroom':
+        current_room = in_room('Bedroom', user_input)
+    elif current_room == 'Cellar':
+        current_room = in_room('Cellar', user_input)
