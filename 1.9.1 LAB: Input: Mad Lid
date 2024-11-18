@@ -1,0 +1,10 @@
+# Read a value from a user and store the value in first_name
+first_name = input()
+
+# TODO: Type your code to read three more values here.
+generic_location = input() # This is for a user to input a Generic Location
+whole_number = input() # This is for a user to input a Whole Number
+plural_noun = input() # This is for a user to input a Plural Noun
+
+# Output a short story using the four input values. Do not modify the code below.
+print(first_name, 'went to', generic_location, 'to buy', whole_number, 'different types of', plural_noun)
