@@ -1,0 +1,12 @@
+3-3 Assignment: Introduction to Pseudocode and Flowcharts
+
+PROMPT for hours worked
+GET hours worked, name hoursworked
+SET hourlyrate as $20
+SET OTrate as $30
+IF hoursworked is less than or equal to 40
+	CALCULATE pay = hoursworked times hourlyrate
+	DISPLAY pay
+ELSE, IF hours worked is greater than 40
+	CALCULATE OTpay = hoursworked times OTrate
+DISPLAY OTpay
