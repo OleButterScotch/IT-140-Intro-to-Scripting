@@ -1,0 +1,100 @@
+''' 12/09/2022
+    SNHU: IT-140: Intro to Scripting '''
+
+# Sample function showing the goal of the game and move commands
+
+# Sample function showing the goal of the game and move commands
+
+rooms = {
+    'Garage': {'East': 'Kitchen', 'North': 'Patio'},  # Starting Room
+    'Patio': {'South': 'Garage', 'East': 'Back Porch', 'item': 'Corn Hole Boards'},
+    'Back Porch': {'West': 'Patio', 'South': 'Hallway', 'item': 'Solo Cups'},
+    'Kitchen': {'West': 'Garage', 'South': 'Dining Room', 'East': 'Hallway', 'item': 'Trash Bag'},
+    'Dining Room': {'North': 'Kitchen', 'item': 'Pizza Boxes'},
+    'Hallway': {
+        'North': 'Back Porch', 'West': 'Kitchen', 'East': 'Living Room',
+        'South': 'Front Porch', 'item': 'Napkins'
+        },
+    'Living Room': {'West': 'Hallway', 'South': 'Study', 'item': 'Soda Cans'},
+    'Study': {'North': 'Living Room', 'item': 'Paper Plates'},
+    'Front Porch': {'North': 'Hallway', 'item': 'Trash Can'}  # Final Room
+}
+
+inventory_list = []
+current_location = 'Garage'
+move = ['North', 'South', 'East', 'West']
+
+def user_instructions():
+    # Print a main menu and the commands
+    print('* ' * 15)
+    print("\"Don't Get Caught\"")
+    print("A Text Based Game")
+    print("Collect all 7 items to win the game,\n"
+          "and don\'t get caught by your parents!")
+    print("Move commands: South, North, East, West")
+    print("Add to Inventory: get 'item name'")
+    print("Exit Game: exit")
+    print('* ' * 15)
+
+def player_status():
+    print('You are in the', current_location)
+    print('Inventory: ', inventory_list)
+    possible_moves = rooms[current_location].keys()
+    print('Possible moves: ', *possible_moves)
+    if current_location['item']:
+        print('Item in room: {}'.format(', '.join(current_location['item'])))
+        print('')
+    return current_location
+
+def room_movement(current_location, move, rooms):
+    current_location = rooms[current_location][move]
+    return current_location
+
+def get_item(current_location, move, rooms, inventory_list):
+    inventory_list.append(rooms[current_location]['item'])
+    del rooms[current_location]
+
+user_instructions()
+
+while True:
+    player_status()
+    if current_location == 'Front Porch':
+        if len(inventory_list) == 7:
+            print('You win')
+            break
+        else:
+            print('You lose')
+    if current_location != 'Front Porch' and current_location['item'] in rooms[current_location].keys():
+        print('Do you want to grab the {}'.format(rooms[current_location]['item']))
+    print('* ' * 15)
+    move = input('Where to next?').title().split()
+
+    if len(move) >= 2 and move [1] in rooms[current_location].keys():
+        current_location = room_movement(current_location, move[1], rooms)
+        continue
+    elif len(move[0]) == 3 and move[0] == 'Get' and ' '.join(move[1:]) in rooms[current_location]['item']:
+        print('You picked up the {}'.format(rooms[current_location]['item']))
+        print('* ' * 15)
+        get_item(current_location, move, rooms, inventory_list)
+        continue
+    else:
+        print('Invalid move, please try again.')
+        print('* ' * 15)
+        continue
+
+'''
+Trial and Error Work:
+while current_location != 'Front Porch':
+    player_status()
+    user_command = input('Where do you want to go?')
+    if user_command in directions:
+        current_location = in_room(current_location, user_command)
+        if current_location['item']:
+            print('Item in Room: {}'.format(', '.join(current_location['item'])))
+    else:
+        print('Invalid Direction')
+
+#[  print(current_location) DONT DELETE!!
+#  print(*rooms[current_location].keys())  DONT DELETE!!
+#  print(*rooms[current_location].values())  DONT DELETE!!]
+'''
