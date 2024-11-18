@@ -1,0 +1,17 @@
+''' Type your code here. '''
+fullName = str(input())
+user_text = fullName.count(' ')
+if user_text == 1:
+    name_list = fullName.split(' ')
+    firstName = name_list[0]
+    firstName_Initial = firstName[0]
+    print(name_list[1] + ',' + ' ' + firstName_Initial + '.')
+elif user_text == 2:
+    name_list = fullName.split(' ')
+    firstName = name_list[0]
+    firstName_Initial = firstName[0]
+    middleName = name_list[1]
+    middleName_Initial = middleName[0]
+    print(name_list[2] + ',' + ' ' + firstName_Initial + '.' + middleName_Initial + '.')
+else:
+    print('Please Enter a Valid Name')
