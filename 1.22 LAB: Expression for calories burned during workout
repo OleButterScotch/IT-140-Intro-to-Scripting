@@ -1,0 +1,17 @@
+''' Calories = ((Age x 0.2757) + (Weight x 0.03295) + (Heart Rate x 1.0781) — 75.4991) x Time / 8.368 '''
+
+''' Type your code here. '''
+# Where _in = an input and _out = an output
+# Defining user_age_in as an integer input by user * the constant 0.2757
+user_age_in = int(input()) * 0.2757 # years
+# Defining user_weight_in as an integer input by user * the constant 0.03295
+user_weight_in = int(input()) * 0.03295 # pounds (lbs)
+# Defining user_heart_rate_in as an integer input by user * the constant 1.0781
+user_heart_rate_in = int(input()) * 1.0781 # beats per minute (bpm)
+# Defining user_time_in as an integer input by user
+user_time_in = int(input()) # minutes
+# Defining user_calories_out as ((age + weight + heart rate - the constant 75.4991) * time / the constant 8.368
+# Inserted round function to round the calories to decimal places)
+user_calories_out = round((((user_age_in + user_weight_in + user_heart_rate_in - 75.4991) * user_time_in) / 8.368), 2)
+# Creating my output to read "Calories: 'user_calories_out' calories"
+print('Calories:' , user_calories_out , 'calories')
